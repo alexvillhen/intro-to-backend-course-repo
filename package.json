@@ -1,0 +1,23 @@
+{
+  "name": "fcc_intro_backend_web_dev",
+  "version": "1.0.0",
+  "description": "intro to backend tutorial project",
+  "homepage": "https://github.com/alexvillhen/intro-to-backend-course-repo#readme",
+  "bugs": {
+    "url": "https://github.com/alexvillhen/intro-to-backend-course-repo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexvillhen/intro-to-backend-course-repo.git"
+  },
+  "license": "ISC",
+  "author": "Alexvillhen",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
