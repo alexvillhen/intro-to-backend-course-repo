@@ -28,3 +28,6 @@ const userSchema = new Schema(
     },
     {timestamps: true}
 )
+
+
+export const User = mongoose.model("User", userSchema); // "User" is the collection name in the database
