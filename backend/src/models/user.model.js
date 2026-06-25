@@ -24,14 +24,7 @@ const userSchema = new Schema(
             required: true,
             minlength: [8, "Password must be at least 8 characters long"],
             maxlength: [50, "Password must be less than 50 characters long"],
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now,
-        },
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            default: () => new mongoose.Types.ObjectId(),
-        },
-    }
+        }
+    },
+    {timestamps: true}
 )
