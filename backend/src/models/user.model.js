@@ -1,5 +1,9 @@
 import mongoose, {Schema} from "mongoose";
 
+const isEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
 const userSchema = new Schema(
     {
         username: {
