@@ -35,4 +35,23 @@ const registerUser = async (req, res) => {
     }
 };
 
-export {registerUser};
+const login = async (req, res) => {
+    try {
+        //checking if the user already  exists
+        const {email, password} = req.body;
+
+        const user = await User.findOne({
+            email: email.toLowerCase()
+        });
+
+        if(!user){
+            return res.status(404).json({
+                message: "user not found"
+            })
+        }
+    } catch (error) {
+        
+    }
+};
+
+export {registerUser, getValidation};
