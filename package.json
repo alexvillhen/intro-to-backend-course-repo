@@ -13,12 +13,18 @@
   "license": "ISC",
   "author": "Alexvillhen",
   "type": "module",
-  "main": "index.js",
+  "main": "backend/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/src/index.js",
+    "dev": "nodemon backend/src/index.js"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.7.2"
+    "mongoose": "^9.7.2",
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0"
   }
 }
