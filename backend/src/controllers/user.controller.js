@@ -1,4 +1,6 @@
 import { User } from "../models/user.model.js";
+import bcrypt from "bcrypt";
+
 
 const registerUser = async (req, res) => {
     try {
@@ -53,5 +55,7 @@ const login = async (req, res) => {
         
     }
 };
+
+
 
 export {registerUser, getValidation};
