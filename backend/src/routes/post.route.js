@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {createPost, editPost,getPostById, getAllPosts} from '../controllers/post.controller.js'
+import {createPost, editPost, getPostById, getAllPosts, deletePostById} from '../controllers/post.controller.js'
 
 const router = Router();
 
@@ -10,7 +10,8 @@ router.get('/', getAllPosts);
 
 router.route('/:id')
     .get(getPostById)
-    .patch(editPost);
+    .patch(editPost)
+    .delete(deletePostById);
 
 
 export default router;

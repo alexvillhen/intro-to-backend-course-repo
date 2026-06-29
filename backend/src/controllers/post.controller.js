@@ -105,9 +105,34 @@ const editPost = async(req, res) => {
     }
 }
 
+const deletePostById = async(req, res) => {
+    try {
+        const {id} = req.params;
+
+        const post = await Post.findByIdAndDelete(id);
+
+        if(!post){
+            return res.status(404).json({
+                message: "No post under specified ID found"
+            })
+        }
+
+        res.status(200).json({
+            message: "Post deleted successfully",
+            post
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Internal server error",
+            error: error.message
+        })
+    }
+}
+
 export {
     createPost,
     getAllPosts,
     getPostById,
-    editPost
+    editPost,
+    deletePostById
 };
