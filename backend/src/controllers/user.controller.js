@@ -1,5 +1,4 @@
 import { User } from "../models/user.model.js";
-import bcrypt from "bcrypt";
 
 
 const registerUser = async (req, res) => {
@@ -37,7 +36,7 @@ const registerUser = async (req, res) => {
     }
 };
 
-const login = async (req, res) => {
+const loginUser = async (req, res) => {
     try {
         //checking if the user already  exists
         const {email, password} = req.body;
@@ -51,11 +50,54 @@ const login = async (req, res) => {
                 message: "user not found"
             })
         }
+
+        const isMatch = await user.comparePassword(password);
+
+        if(!isMatch){
+            return res.status(400).json({
+                message: "invalid credentials"
+            })
+        }
+
+        res.status(200).json({
+            message: "User Logged in",
+            user: {
+                id: user._id,
+                email: user.email,
+                username: user.username
+            }
+        })
     } catch (error) {
-        
+        res.status(500).json({
+            message: "Internal server error",
+            failure: error.message
+        })
     }
 };
 
+const logoutUser = async (req, res) => {
+    try{
+        const {email} = req.body;
+        const user = await User.findOne({email});
+
+        if(!user){
+            return res.status(404).json({
+                message: "No user found"
+            })
+        }
+
+        res.status(200).json({
+            message: "User Logged out"
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            message: "Internal server error",
+            error: error.message
+        })
+    }
+}
 
 
-export {registerUser, getValidation};
+
+export {registerUser, loginUser, logoutUser};

@@ -1,4 +1,6 @@
 import mongoose, {Schema} from "mongoose";
+import bcrypt from "bcrypt";
+
 
 const isEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -32,6 +34,17 @@ const userSchema = new Schema(
     },
     {timestamps: true}
 )
+
+//encrypt passwords before saving users
+userSchema.pre("save", async function(){
+    if(!this.isModified("password")) return;
+    this.password = await bcrypt.hash(this.password, 10);
+})
+
+//compare passwords
+userSchema.methods.comparePassword = async function (password){
+    return await bcrypt.compare(password, this.password);
+}
 
 
 export const User = mongoose.model("User", userSchema); // "User" is the collection name in the database
