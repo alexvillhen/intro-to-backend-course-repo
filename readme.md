@@ -1,40 +1,62 @@
-# Intro to Backend Web Development
+# Intro to Backend Web Development & Frontend Client
 
-A REST API built while following the [freeCodeCamp Intro to Backend Web Development tutorial](https://www.youtube.com/watch?v=KOutPbKc9UM&t=5793s). The project covers core backend concepts—Express routing, MongoDB with Mongoose, user authentication basics, and CRUD operations—extended with full post management endpoints.
+A full-stack web application built while following and extending the [freeCodeCamp Intro to Backend Web Development tutorial](https://www.youtube.com/watch?v=KOutPbKc9UM&t=5793s). The project features a robust REST API backend for user authentication and post management, coupled with a dynamic, responsive dark-themed Single Page Application (SPA) frontend.
 
 ## Features
 
+### Backend
 - **User management** — register, login, and logout with bcrypt password hashing
 - **Post CRUD** — create, read (all or by ID), partial update, and delete posts
 - **MongoDB integration** — Mongoose models with schema validation and timestamps
 - **Structured architecture** — separated routes, controllers, models, and config
 
+### Frontend
+- **Single Page Application (SPA)** — modular, tab-based layout with zero external framework dependencies
+- **Interactive Post Feed** — create, read, update (inline), and delete posts in real-time
+- **Session Management** — persistent local user sessions stored in `localStorage`
+- **Dynamic CSS UI** — dark-themed, responsive design with polished typography, transitions, and toast status notifications
+- **Clean API Client Wrapper** — decoupled network request module using native Fetch API
+
 ## Tech Stack
 
+### Backend
 - [Node.js](https://nodejs.org/)
 - [Express 5](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/) + [Mongoose](https://mongoosejs.com/)
 - [bcrypt](https://www.npmjs.com/package/bcrypt) — password hashing
 - [dotenv](https://www.npmjs.com/package/dotenv) — environment variables
+- [cors](https://www.npmjs.com/package/cors) — Cross-Origin Resource Sharing
+
+### Frontend
+- HTML5 (Semantic elements & `<template>` tag for dynamic rendering)
+- CSS3 (Vanilla layout with CSS custom properties & media query responsiveness)
+- JavaScript (ES Modules for structured, modular frontend code)
 
 ## Project Structure
 
 ```
-backend/src/
-├── config/
-│   ├── constants.js      # App constants (e.g. DB name)
-│   └── database.js       # MongoDB connection
-├── controllers/
-│   ├── post.controller.js
-│   └── user.controller.js
-├── models/
-│   ├── post.model.js
-│   └── user.model.js
-├── routes/
-│   ├── post.route.js
-│   └── user.route.js
-├── app.js                # Express app & middleware
-└── index.js              # Server entry point
+├── backend/src/
+│   ├── config/
+│   │   ├── constants.js      # App constants (e.g. DB name)
+│   │   └── database.js       # MongoDB connection
+│   ├── controllers/
+│   │   ├── post.controller.js
+│   │   └── user.controller.js
+│   ├── models/
+│   │   ├── post.model.js
+│   │   └── user.model.js
+│   ├── routes/
+│   │   ├── post.route.js
+│   │   └── user.route.js
+│   ├── app.js                # Express app, static serving & middleware
+│   └── index.js              # Server entry point
+├── frontend/
+│   ├── css/
+│   │   └── styles.css        # Responsive dark-theme styling
+│   ├── js/
+│   │   ├── api.js            # Network API client functions
+│   │   └── app.js            # Tab switching, UI state & DOM rendering
+│   └── index.html            # Main SPA interface & templates
 ```
 
 ## Getting Started
@@ -78,7 +100,7 @@ backend/src/
    npm start
    ```
 
-The server runs on `http://localhost:4000` by default (or the port set in `.env`).
+The server runs on `http://localhost:4000` by default (or the port set in `.env`), and automatically serves the frontend client at the root URL.
 
 ## API Reference
 
@@ -166,6 +188,7 @@ curl -X POST http://localhost:4000/api/v1/users/register \
 
 This repo extends the FCC tutorial with:
 
+- **Interactive SPA Frontend** — a dynamic, dark-themed Single Page Application to interact with the API directly from the browser
 - **Full post CRUD** — get by ID, partial update (`PATCH`), and delete by ID (`DELETE`)
 - **Partial updates** — `editPost` only modifies fields sent in the request body
 - **Consistent error handling** — 400, 404, and 500 responses across endpoints
